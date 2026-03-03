@@ -130,7 +130,7 @@
     {/if}
     <div class="column" style="text-align: center;">
         <div class="ui medium image">
-           <img src="{if $LOGO_IMAGE}{$LOGO_IMAGE}{else}https://devnex.pro/_cdn/icon.svg{/if}" style="cursor:pointer; display: unset; max-width: 100%; height: {if isset ($LOGOHEIGHT)}{$LOGOHEIGHT}px{else}150px{/if};">
+           <img src="{if $LOGO_IMAGE}{$LOGO_IMAGE}{else}/core/assets/img/namelessmc_logo.png{/if}" style="cursor:pointer; display: unset; max-width: 100%; height: {if isset ($LOGOHEIGHT)}{$LOGOHEIGHT}px{else}150px{/if};">
         </div>
     </div>
     {if $MINECRAFTVIEW eq '1'}

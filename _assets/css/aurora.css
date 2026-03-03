@@ -1331,10 +1331,16 @@ body.dark .ui.form input[type=url] {
     color: #fff;
 }
 
-body.dark .ui.mini.info.message {
+body.dark .ui.mini.info.message,
+body.dark .ui.info.message {
+    color: rgba(255, 255, 255, 0.6) !important;
     background-color: var(--bg-tertiary-dark);
     box-shadow: 0 0 0 1px var(--bg-tertiary-dark) inset, 0 0 0 0 transparent;
     -webkit-box-shadow: 0 0 0 1px var(--bg-tertiary-dark) inset, 0 0 0 0 transparent;
+}
+
+body.dark .ui.info.message .header {
+    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 body.dark .ui.pagination {
@@ -1492,4 +1498,16 @@ body.dark .cc-window.cc-floating .cc-highlight .cc-btn.cc-allow {
 
 body.dark .white {
     color: #fff;
+}
+
+.user-mention {
+    background-color: #f5f5f5;
+    border-radius: 0.25rem;
+    padding: 2px 4px;
+}
+
+body.dark .user-mention {
+    background-color: #565151;
+    border-radius: 0.25rem;
+    padding: 2px 4px;
 }

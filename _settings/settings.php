@@ -1,10 +1,9 @@
 <?php
 /*
- *    Aurora Template
- *    github.com/bijju089/aurora-theme
- *    LICENSE: MIT
+ * Aurora Template
+ * (settings.php)
+ * @license MIT
  */
-
 
 $template_file = 'page/main.tpl';
 
@@ -15,8 +14,8 @@ require_once(ROOT_PATH . '/core/templates/backend_init.php');
 
 $current_template->getEngine()->addVariables(AuroraUtil::getSettingsToSmarty());
 $current_template->getEngine()->addVariables([
-        'TPL_PATH' => ROOT_PATH . '/custom/templates/Aurora/_settings/page/',
-        'SETTINGS_TEMPLATE' => ROOT_PATH . '/custom/templates/Aurora/_settings/' . $template_file,
+        'TPL_PATH' => ROOT_PATH . '/custom/templates/AuroraV2/_settings/page/',
+        'SETTINGS_TEMPLATE' => ROOT_PATH . '/custom/templates/AuroraV2/_settings/' . $template_file,
         'SUBMIT' => $language->get('general', 'submit'),
         'YES' => $language->get('general', 'yes'),
         'NO' => $language->get('general', 'no'),

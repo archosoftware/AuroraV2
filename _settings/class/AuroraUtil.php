@@ -1,7 +1,7 @@
 <?php
 /*
  * Aurora Template
- * github.com/devnex-labs/Aurora
+ * github.com/archointeractive/AuroraV2
  * LICENSE: MIT
  */
 
@@ -12,7 +12,7 @@ class AuroraUtil
     public static function getLanguage(string $file, string $term, array $variables = []): string
     {
         if (!isset(self::$_aurora_language)) {
-            self::$_aurora_language = new Language(ROOT_PATH . '/custom/templates/Aurora/_language', LANGUAGE);
+            self::$_aurora_language = new Language(ROOT_PATH . '/custom/templates/AuroraV2/_language', LANGUAGE);
         }
         return self::$_aurora_language->get($file, $term, $variables);
     }

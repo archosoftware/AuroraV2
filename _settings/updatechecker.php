@@ -1,19 +1,17 @@
 <?php
 /*
  * Aurora Template
- * Made by BijjuXD
- * Update Checker File
+ * (updatechecker.php)
  * @license MIT
  */
 
-require_once(ROOT_PATH . '/custom/templates/Aurora/template.php');
+require_once(ROOT_PATH . '/custom/templates/AuroraV2/template.php');
 
 // Get Current Version of Aurora
 $currentVersion = $template->getVersion();
 $isDev = ($currentVersion === 'dev');
 
-// ALT: https://api.bijjuxd.me/v1/aurora/get-version
-$versionInfoUrl = "https://api.devnex.pro/v1/aurora/get-version";
+$versionInfoUrl = "https://www.archosoftware.com/api/v2/aurora/get-version";
 
 $updateInfo = @file_get_contents($versionInfoUrl);
 

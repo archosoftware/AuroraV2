@@ -1,7 +1,7 @@
 <?php
 /*
  *    Aurora Template for NamelessMC
- *    github.com/devnex-labs/Aurora
+ *    github.com/archointeractive/AuroraV2
  *    LICENSE: MIT
  */
 
@@ -22,17 +22,17 @@ class Aurora_Template extends SmartyTemplateBase {
 
     public function __construct(Cache $cache, Language $language, User $user, Pages $pages) {
         $template = [
-            'name' => 'Aurora',
+            'name' => 'AuroraV2',
             'version' => 'dev',
-            'nl_version' => '2.2.3',
-            'author' => '<a href="https://devnex.pro/" target="_blank">DevNex</a> & <a href="https://github.com/bijju089/aurora-theme/graphs/contributors" target="_blank">Contributors</a>',
+            'nl_version' => '2.2.4',
+            'author' => '<a href="https://www.archosoftware.com/" target="_blank">Archo Studios</a>',
         ];
 
         $template['path'] = (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/' . $template['name'] . '/';
 
         parent::__construct($template['name'], $template['version'], $template['nl_version'], $template['author'], __DIR__);
 
-        $this->_settings = ROOT_PATH . '/custom/templates/Aurora/_settings/settings.php';
+        $this->_settings = ROOT_PATH . '/custom/templates/AuroraV2/_settings/settings.php';
        
         $this->_smarty = $smarty;
         $this->_cache = $cache;
@@ -132,9 +132,7 @@ class Aurora_Template extends SmartyTemplateBase {
         ];
 
         // Logo
-        $cache = new Cache(['name' => 'nameless', 'extension' => '.cache', 'path' => ROOT_PATH . '/cache/']);
-        $cache->setCache('backgroundcache');
-        $logo_image = $cache->retrieve('logo_image');
+        $logo_image = Settings::get('logo_image_path');
         $JSVariables['logoImage'] = !empty($logo_image) ? $logo_image : null;
 
         if (str_contains($route, '/forum/topic/') || PAGE === 'profile') {

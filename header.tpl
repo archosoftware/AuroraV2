@@ -12,10 +12,10 @@ value="{$PAGE_DESCRIPTION}"}{else}{assign var="PAGEDESCRIPTION" value=" "}{/if}
 value="{$PAGE_KEYWORDS}"}{else}{assign var="PAGEKEYWORDS" value=" "}{/if}
 <!DOCTYPE html>
 <html{$HTMLCLASS}{$HTMLLANG}{$HTMLRTL}>
-<!-- Aurora v{$AURORA_VER} by DevNexLabs | https://github.com/devnex-labs/aurora-theme -->
+<!-- Aurora v{$AURORA_VER} by Archo Studios | https://github.com/archosoftware/AuroraV2 -->
     <head>
 
-        <meta charset="{$METACHARSET}">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <title>{$TITLE} &bull; {$smarty.const.SITE_NAME}</title>
 
@@ -30,13 +30,17 @@ value="{$PAGE_KEYWORDS}"}{else}{assign var="PAGEKEYWORDS" value=" "}{/if}
         <meta property="og:title" content="{$TITLE} &bull; {$smarty.const.SITE_NAME}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{$OG_URL}" />
-        <meta property="og:image" content="{$OG_IMAGE}" />
+        {if isset($OG_IMAGE)}
+            <meta property="og:image" content="{$OG_IMAGE}" />
+        {/if}
         <meta property='og:description' content="{$PAGE_DESCRIPTION}" />
 
         <!-- Twitter Card Properties -->
         <meta name="twitter:title" content="{$TITLE} &bull; {$smarty.const.SITE_NAME}" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="{$OG_IMAGE}" />
+        {if isset($OG_IMAGE)}
+            <meta name="twitter:image" content="{$OG_IMAGE}" />
+        {/if}
 
         {if isset($PAGE_DESCRIPTION) && $PAGE_DESCRIPTION|count_characters > 0}
             <meta name="twitter:description" content="{$PAGE_DESCRIPTION}" />
