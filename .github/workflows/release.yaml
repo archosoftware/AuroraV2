@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: write
@@ -11,27 +11,44 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Create release branch
+      - name: Update version in template.php
         run: |
-          git checkout -b release/${{ github.ref_name }}
-          git push origin release/${{ github.ref_name }}
+          VERSION=${GITHUB_REF_NAME}
+          sed -i "s/version: dev/version: ${VERSION}/" template.php
 
-      - name: Replace version in template.php
+      - name: Prepare package structure
         run: |
-          sed -i 's/version: dev/version: ${{ github.ref_name }}/' template.php
+          VERSION=${GITHUB_REF_NAME}
 
-      - name: Package assets
+          mkdir -p build/upload/custom/templates/AuroraV2
+
+          # Copy everything except README.md and .git
+          rsync -av \
+            --exclude='README.md' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='build' \
+            ./ build/upload/custom/templates/AuroraV2/
+
+          cd build
+          zip -r ../Aurora.${VERSION}.zip upload
+
+      - name: Extract changelog section
         run: |
-          mkdir -p upload/custom/templates/AuroraV2
-          rsync -av --exclude='README.md' . upload/custom/templates/AuroraV2/
-          zip -r Aurora-${{ github.ref_name }}.zip upload/custom/templates/AuroraV2/
+          sed -n "/^## ${GITHUB_REF_NAME}/,/^## /{/^## /b;p}" CHANGELOG.md > RELEASE_CHANGELOG || true
 
-      - name: Create GitHub Release
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Aurora.${{ github.ref_name }}.zip
+          body_path: RELEASE_CHANGELOG
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'rc') }}
+          overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create ${{ github.ref_name }} Aurora-${{ github.ref_name }}.zip --title "Release ${{ github.ref_name }}" --notes "New Release Published!"
