@@ -19,15 +19,19 @@ jobs:
       - name: Update version in template.php
         run: |
           VERSION=${GITHUB_REF_NAME}
-          sed -i "s/version: dev/version: ${VERSION}/" template.php
+          VERSION_NO_V=${VERSION#v}
+
+          sed -i "s/'version' => 'dev'/'version' => '${VERSION_NO_V}'/" template.php
+
 
       - name: Prepare package structure
         run: |
           VERSION=${GITHUB_REF_NAME}
+          VERSION_NO_V=${VERSION#v}
 
           mkdir -p build/upload/custom/templates/AuroraV2
 
-          # Copy everything except README.md and .git
+          # Copy everything except unwanted files
           rsync -av \
             --exclude='README.md' \
             --exclude='.git' \
@@ -35,8 +39,14 @@ jobs:
             --exclude='build' \
             ./ build/upload/custom/templates/AuroraV2/
 
+          # Move into build folder
           cd build
-          zip -r ../Aurora.${VERSION}.zip upload
+
+          # Copy README.md to root of zip
+          cp ../README.md .
+
+          # Create final zip
+          zip -r ../Aurora.${VERSION_NO_V}.zip upload README.md
 
       - name: Extract changelog section
         run: |
@@ -45,7 +55,7 @@ jobs:
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
-          files: Aurora.${{ github.ref_name }}.zip
+          files: Aurora.${{ github.ref_name && github.ref_name != '' && github.ref_name != null && github.ref_name != false && github.ref_name != 'null' && github.ref_name != 'undefined' && github.ref_name }}
           body_path: RELEASE_CHANGELOG
           draft: false
           prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'rc') }}
