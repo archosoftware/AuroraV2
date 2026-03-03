@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Create release branch
+        run: |
+          git checkout -b release/${{ github.ref_name }}
+          git push origin release/${{ github.ref_name }}
+
+      - name: Replace version in template.php
+        run: |
+          sed -i 's/version: dev/version: ${{ github.ref_name }}/' template.php
+
+      - name: Package assets
+        run: |
+          mkdir -p upload/custom/templates/AuroraV2
+          rsync -av --exclude='README.md' . upload/custom/templates/AuroraV2/
+          zip -r Aurora-${{ github.ref_name }}.zip upload/custom/templates/AuroraV2/
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ github.ref_name }} Aurora-${{ github.ref_name }}.zip --title "Release ${{ github.ref_name }}" --notes "New Release Published!"
