@@ -1,7 +1,7 @@
 # Aurora NamelessMC Theme
 
 A perfect theme for [NamelessMC](https://namelessmc.com/) <br><br>
-![Aurora](https://img.shields.io/badge/Aurora-FREE-yellow?style=for-the-badge) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/devnex-labs/Aurora/total?style=for-the-badge) ![GitHub License](https://img.shields.io/github/license/devnex-labs/Aurora?style=for-the-badge) ![GitHub Release](https://img.shields.io/github/v/release/devnex-labs/Aurora?display_name=tag&style=for-the-badge)
+![Aurora](https://img.shields.io/badge/Aurora-FREE-yellow?style=for-the-badge) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/archosoftware/AuroraV2/total?style=for-the-badge) ![GitHub License](https://img.shields.io/github/license/archosoftware/AuroraV2?style=for-the-badge) ![GitHub Release](https://img.shields.io/github/v/release/archosoftware/AuroraV2?display_name=tag&style=for-the-badge)
 
 ## Features
 
@@ -26,7 +26,7 @@ A perfect theme for [NamelessMC](https://namelessmc.com/) <br><br>
   * 🤖 [WidgetBot](https://widgetbot.io)
 
 ## Official Documentation
-You may refer: https://wiki.devnex.pro/aurora-namelessmc
+You may refer: https://wiki.archosoftware.com/aurora-namelessmc
 ## Getting Started
 
 1. Download latest version of **Aurora** from releases tab on github.
@@ -56,14 +56,14 @@ You may refer: https://wiki.devnex.pro/aurora-namelessmc
 - English UK (100%)
 ### What you'll need
 
-- [NamelessMC](https://namelessmc.com/download/) v2.2.3
+- [NamelessMC](https://namelessmc.com/download/) v2.2.4
   - We always recommend you to use latest version of namelessmc.
 - Latest version of browser (Internet Explorer not supported)
 
 ## Contribution
 If you make any changes or improvements to Aurora which you think would be beneficial to others, please consider making a pull request to merge your changes back into the main project.
 ## License
-Aurora is licensed under MIT. Please see [LICENSE](https://github.com/devnex-labs/Aurora/blob/main/LICENSE) for more info.
+Aurora is licensed under MIT. Please see [LICENSE](https://github.com/archosoftware/AuroraV2/blob/main/LICENSE) for more info.
 
 ## Community Support
 Feel free to join our [discord](https://discord.gg/devnex) server for template support.
