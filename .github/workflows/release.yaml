@@ -55,7 +55,7 @@ jobs:
       - name: Publish Release
         uses: softprops/action-gh-release@v2
         with:
-          files: Aurora.${{ github.ref_name && github.ref_name != '' && github.ref_name != null && github.ref_name != false && github.ref_name != 'null' && github.ref_name != 'undefined' && github.ref_name }}
+          files: Aurora.${{ github.ref_name && github.ref_name != '' && github.ref_name != null && github.ref_name != false && github.ref_name != 'null' && github.ref_name != 'undefined' && github.ref_name }}.zip
           body_path: RELEASE_CHANGELOG
           draft: false
           prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'rc') }}
